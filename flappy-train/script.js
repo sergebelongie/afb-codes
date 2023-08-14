@@ -40,17 +40,19 @@ function updateTunnels() {
     for (let i = 0; i < tunnels.length; i++) {
         tunnels[i].x -= 2;
 
-        if (tunnels[i].x < -tunnelWidth) {
-            tunnels.splice(i, 1);
-            i--;
-        }
-
         if (tunnels[i].x + tunnelWidth < train.x && !tunnels[i].scored) {
             score++;
             tunnels[i].scored = true;  // Mark this tunnel as scored
         }
+
+        // Remove the tunnel if it's off the screen, and adjust the loop counter
+        if (tunnels[i].x < -tunnelWidth) {
+            tunnels.splice(i, 1);
+            i--;  // Adjust index after removing an item from the array
+        }
     }
 }
+
 
 
 
