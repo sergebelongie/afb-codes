@@ -67,7 +67,7 @@ function drawTunnels() {
 function addSmoke() {
     let smoke = {
         x: train.x,
-        y: train.y,
+        y: train.y - 40,  // Subtract 40 pixels to position the smoke above the train
         opacity: 1
     };
     smokes.push(smoke);
