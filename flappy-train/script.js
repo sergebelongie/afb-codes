@@ -43,11 +43,12 @@ function updateTunnels() {
             i--;
         }
 
-        if (tunnel.x + tunnelWidth < train.x) {
+        if (tunnels[i].x + tunnelWidth < train.x) {
             score++;  // Increment score when a tunnel has passed the train
         }
     }
 }
+
 
 function drawTunnels() {
     ctx.fillStyle = "#8B4513";
