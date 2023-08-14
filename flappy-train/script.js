@@ -155,17 +155,6 @@ function drawGame() {
     drawScore();
 }
 
-// Function to update the timestamp
-function updateTimestamp() {
-    const now = new Date();
-    const formattedTime = now.toLocaleString();
-    document.getElementById("timestamp").innerText = "Last Updated: " + formattedTime;
-}
-
-// Call the function to set the initial timestamp
-updateTimestamp();
-
-
 let frameCount = 0;
 
 gameLoop();
