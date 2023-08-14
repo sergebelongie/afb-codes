@@ -170,6 +170,7 @@ let frameCount = 0;
 
 gameLoop();
 
+// Color indicator logic
 const colors = ["#FF5733", "#33FF57", "#5733FF", "#FF33A1", "#33A1FF"];
 const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
