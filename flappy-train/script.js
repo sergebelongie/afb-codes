@@ -66,7 +66,7 @@ function drawTunnels() {
 
 function addSmoke() {
     let smoke = {
-        x: train.x + 20,  // Add 20 pixels to position to try to align smoke puffs with smokestack
+        x: train.x + 15,  // Add 15 pixels to position to try to align smoke puffs with smokestack
         y: train.y - 40,  // Subtract 40 pixels to position the smoke above the train
         opacity: 1
     };
