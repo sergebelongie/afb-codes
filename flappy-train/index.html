@@ -5,65 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flappy Train</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #87CEEB; /* Sky blue color */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            margin: 0;
-        }
-
-        #gameCanvas {
-            border: 1px solid #000;
-            background-color: #E0FFFF; /* Lighter sky blue for contrast */
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <canvas id="gameCanvas" width="480" height="320"></canvas>
-    <script>
-        const canvas = document.getElementById("gameCanvas");
-        const ctx = canvas.getContext("2d");
-
-        let train = {
-            x: canvas.width / 4,
-            y: canvas.height / 2,
-            velocityY: 0,
-        };
-
-        function drawTrain() {
-            ctx.font = "50px Arial";
-            ctx.textAlign = "center";
-            ctx.fillText("\uD83D\uDE82", train.x, train.y);
-        }
-
-        canvas.addEventListener("click", function() {
-            train.velocityY = -5; // This value determines how high the train "puffs" up
-        });
-
-        function gameLoop() {
-            updateGame();
-            drawGame();
-            requestAnimationFrame(gameLoop);
-        }
-
-        function updateGame() {
-            train.y += train.velocityY;
-            train.velocityY += 0.5; // Gravity pulling the train down
-        }
-
-        function drawGame() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-            drawTrain();
-        }
-
-        gameLoop(); // Start the game loop
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
