@@ -1,0 +1,15 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #87CEEB; /* Sky blue color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+#gameCanvas {
+    border: 1px solid #000;
+    background-color: #E0FFFF; /* Lighter sky blue for contrast */
+}
