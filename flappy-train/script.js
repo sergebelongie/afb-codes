@@ -29,10 +29,12 @@ function spawnTunnel() {
     const gapPosition = Math.random() * (canvas.height - tunnelGap);
     const tunnel = {
         x: canvas.width,
-        gapPosition: gapPosition
+        gapPosition: gapPosition,
+        scored: false  // Add this line
     };
     tunnels.push(tunnel);
 }
+
 
 function updateTunnels() {
     for (let i = 0; i < tunnels.length; i++) {
@@ -43,11 +45,13 @@ function updateTunnels() {
             i--;
         }
 
-        if (tunnels[i].x + tunnelWidth < train.x) {
-            score++;  // Increment score when a tunnel has passed the train
+        if (tunnels[i].x + tunnelWidth < train.x && !tunnels[i].scored) {
+            score++;
+            tunnels[i].scored = true;  // Mark this tunnel as scored
         }
     }
 }
+
 
 
 function drawTunnels() {
