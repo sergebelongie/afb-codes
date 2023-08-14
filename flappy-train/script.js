@@ -1,5 +1,8 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
+const updateCounter = 1; // Start with 1, increment this number every time you update
+const colors = ["#FF5733", "#33FF57", "#5733FF", "#FF33A1", "#33A1FF"];
+
 
 let train = {
     x: canvas.width / 4,
@@ -160,7 +163,5 @@ let frameCount = 0;
 gameLoop();
 
 // Color indicator logic
-const colors = ["#FF5733", "#33FF57", "#5733FF", "#FF33A1", "#33A1FF"];
-const randomColor = colors[Math.floor(Math.random() * colors.length)];
-
-document.getElementById("colorIndicator").style.backgroundColor = randomColor;
+const currentUpdateColor = colors[updateCounter % colors.length];
+document.getElementById("colorIndicator").style.backgroundColor = currentUpdateColor;
