@@ -12,9 +12,12 @@ const tunnelWidth = 75; // Width of the tunnel
 const tunnelGap = 100;  // Gap height where the train will pass through
 
 function drawTrain() {
+    ctx.save(); // Save the current state
+    ctx.scale(-1, 1); // Flip the x-axis
     ctx.font = "50px Arial";
     ctx.textAlign = "center";
-    ctx.fillText("\uD83D\uDE82", train.x, train.y);
+    ctx.fillText("\uD83D\uDE82", -train.x, train.y); // Notice the negative value for x
+    ctx.restore(); // Restore the original state
 }
 
 function spawnTunnel() {
