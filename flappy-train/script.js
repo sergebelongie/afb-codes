@@ -8,18 +8,21 @@ let train = {
 };
 
 let tunnels = [];
-const tunnelWidth = 75; // Width of the tunnel
-const tunnelGap = 100;  // Gap height where the train will pass through
+const tunnelWidth = 75;
+const tunnelGap = 100;
 
 let smokes = [];
 
+let score = 0;  // New score variable
+let isGameOver = false;  // New game over flag
+
 function drawTrain() {
-    ctx.save(); // Save the current state
-    ctx.scale(-1, 1); // Flip the x-axis
+    ctx.save();
+    ctx.scale(-1, 1);
     ctx.font = "50px Arial";
     ctx.textAlign = "center";
-    ctx.fillText("\uD83D\uDE82", -train.x, train.y); // Notice the negative value for x
-    ctx.restore(); // Restore the original state
+    ctx.fillText("\uD83D\uDE82", -train.x, train.y);
+    ctx.restore();
 }
 
 function spawnTunnel() {
@@ -38,6 +41,10 @@ function updateTunnels() {
         if (tunnels[i].x < -tunnelWidth) {
             tunnels.splice(i, 1);
             i--;
+        }
+
+        if (tunnel.x + tunnelWidth < train.x) {
+            score++;  // Increment score when a tunnel has passed the train
         }
     }
 }
@@ -81,14 +88,41 @@ function drawSmokes() {
     ctx.globalAlpha = 1;
 }
 
+function checkCollisions() {
+    if (train.y < 0 || train.y > canvas.height) {
+        isGameOver = true;
+    }
+
+    for (let tunnel of tunnels) {
+        if (train.x < tunnel.x + tunnelWidth && train.x > tunnel.x &&
+            (train.y < tunnel.gapPosition || train.y > tunnel.gapPosition + tunnelGap)) {
+            isGameOver = true;
+        }
+    }
+
+    if (isGameOver) {
+        console.log("Game Over!");
+        // Additional game over handling can be added here if needed
+    }
+}
+
+function drawScore() {
+    ctx.font = "24px Arial";
+    ctx.fillStyle = "#000";
+    ctx.textAlign = "left";
+    ctx.fillText("Score: " + score, 10, 30);
+}
+
 canvas.addEventListener("click", function() {
     train.velocityY = -5;
     addSmoke();
 });
 
 function gameLoop() {
-    updateGame();
-    drawGame();
+    if (!isGameOver) {  // Only update and draw if the game isn't over
+        updateGame();
+        drawGame();
+    }
     requestAnimationFrame(gameLoop);
 }
 
@@ -102,6 +136,7 @@ function updateGame() {
 
     updateTunnels();
     updateSmokes();
+    checkCollisions();  // Check for collisions
     frameCount++;
 }
 
@@ -110,6 +145,7 @@ function drawGame() {
     drawTunnels();
     drawTrain();
     drawSmokes();
+    drawScore();
 }
 
 let frameCount = 0;
